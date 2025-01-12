@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mariposas Volando</title>
+  <title>Mariposas Doradas</title>
   <style>
     body {
       margin: 0;
       overflow: hidden;
-      background: linear-gradient(to bottom, #87CEEB, #ffffff);
+      background: #000; /* Fondo negro */
       height: 100vh;
     }
 
@@ -16,10 +16,10 @@
       position: absolute;
       width: 40px;
       height: 40px;
-      background-image: url('https://i.imgur.com/8EVBPtK.png'); /* Imagen de una mariposa */
+      background-image: url('https://i.imgur.com/8K1LkFZ.png'); /* Imagen de una mariposa dorada */
       background-size: contain;
       background-repeat: no-repeat;
-      animation: flutter 1s infinite ease-in-out alternate;
+      animation: flutter 1s infinite ease-in-out alternate, glow 2s infinite ease-in-out;
     }
 
     @keyframes flutter {
@@ -28,6 +28,15 @@
       }
       100% {
         transform: rotate(20deg) scale(1.1);
+      }
+    }
+
+    @keyframes glow {
+      0%, 100% {
+        filter: drop-shadow(0 0 8px gold);
+      }
+      50% {
+        filter: drop-shadow(0 0 15px gold);
       }
     }
   </style>
