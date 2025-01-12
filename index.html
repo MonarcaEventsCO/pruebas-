@@ -1,84 +1,84 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mariposas Doradas</title>
+  <title>Mariposas Volando</title>
   <style>
     body {
       margin: 0;
       overflow: hidden;
-      background: #000; /* Fondo negro */
+      background-color: #000; /* Fondo negro */
       height: 100vh;
     }
 
     .butterfly {
       position: absolute;
-      width: 60px;
-      height: 60px;
-      background-image: url('https://upload.wikimedia.org/wikipedia/commons/3/3e/Morpho_menelaus_%28cropped%29.png'); /* Imagen real de mariposa dorada */
-      background-size: cover;
-      background-repeat: no-repeat;
-      animation: flutter 1s infinite ease-in-out alternate, glow 2s infinite ease-in-out;
+      width: 100px; /* Ajusta el tamaño de la mariposa */
+      height: auto;
+      pointer-events: none;
+      animation: flutter 5s infinite alternate, move 10s infinite linear;
     }
 
     @keyframes flutter {
       0% {
-        transform: rotate(0deg) scale(1);
+        transform: rotate(0deg);
       }
       100% {
-        transform: rotate(20deg) scale(1.1);
+        transform: rotate(30deg);
       }
     }
 
-    @keyframes glow {
-      0%, 100% {
-        filter: drop-shadow(0 0 8px gold);
+    @keyframes move {
+      0% {
+        left: 0%;
+        top: 0%;
+      }
+      25% {
+        left: 25%;
+        top: 50%;
       }
       50% {
-        filter: drop-shadow(0 0 15px gold);
+        left: 50%;
+        top: 20%;
+      }
+      75% {
+        left: 75%;
+        top: 60%;
+      }
+      100% {
+        left: 100%;
+        top: 0%;
       }
     }
+
   </style>
 </head>
 <body>
   <script>
-    // Función para generar mariposas aleatorias
-    function createButterfly() {
-      const butterfly = document.createElement('div');
-      butterfly.classList.add('butterfly');
+    // Función para crear mariposas con video
+    function createButterflies() {
+      const numButterflies = 10; // Número de mariposas
+      const butterflyVideoUrl = 'https://cdn.streamable.com/video/mp4/kpzxaf.mp4'; // URL directa al video de Streamable
 
-      // Posición inicial aleatoria
-      butterfly.style.left = Math.random() * window.innerWidth + 'px';
-      butterfly.style.top = Math.random() * window.innerHeight + 'px';
+      for (let i = 0; i < numButterflies; i++) {
+        const butterfly = document.createElement('video');
+        butterfly.classList.add('butterfly');
+        butterfly.src = butterflyVideoUrl;
+        butterfly.autoplay = true;
+        butterfly.loop = true;
 
-      // Animación de movimiento aleatorio
-      const duration = Math.random() * 5 + 5; // Entre 5 y 10 segundos
-      butterfly.style.animationDuration = duration + 's';
+        // Posición aleatoria inicial de la mariposa
+        butterfly.style.left = Math.random() * 100 + '%';
+        butterfly.style.top = Math.random() * 100 + '%';
 
-      // Añadimos al cuerpo
-      document.body.appendChild(butterfly);
-
-      // Movimiento suave
-      const fly = setInterval(() => {
-        butterfly.style.left = Math.random() * window.innerWidth + 'px';
-        butterfly.style.top = Math.random() * window.innerHeight + 'px';
-      }, duration * 1000);
-
-      // Eliminar después de un tiempo
-      setTimeout(() => {
-        clearInterval(fly);
-        butterfly.remove();
-      }, duration * 5000);
+        // Añadir la mariposa al cuerpo del documento
+        document.body.appendChild(butterfly);
+      }
     }
 
-    // Crear múltiples mariposas al inicio
-    for (let i = 0; i < 20; i++) {
-      setTimeout(createButterfly, i * 500);
-    }
-
-    // Seguir generando nuevas mariposas
-    setInterval(createButterfly, 3000);
+    // Crear mariposas cuando la página cargue
+    window.onload = createButterflies;
   </script>
 </body>
 </html>
