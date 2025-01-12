@@ -56,17 +56,18 @@
 </head>
 <body>
   <script>
-    // Función para crear mariposas con video
+    // Función para crear mariposas con iframe de Streamable
     function createButterflies() {
       const numButterflies = 10; // Número de mariposas
-      const butterflyVideoUrl = 'https://cdn.streamable.com/video/mp4/kpzxaf.mp4'; // URL directa al video de Streamable
+      const butterflyVideoUrl = 'https://streamable.com/kpzxaf'; // URL del video en Streamable
 
       for (let i = 0; i < numButterflies; i++) {
-        const butterfly = document.createElement('video');
+        const butterfly = document.createElement('iframe');
         butterfly.classList.add('butterfly');
-        butterfly.src = butterflyVideoUrl;
-        butterfly.autoplay = true;
-        butterfly.loop = true;
+        butterfly.src = `${butterflyVideoUrl}?autoplay=1`; // URL para reproducir automáticamente el video
+        butterfly.frameBorder = 0;
+        butterfly.allow = 'autoplay; fullscreen'; // Permitir autoplay y fullscreen
+        butterfly.allowFullscreen = true;
 
         // Posición aleatoria inicial de la mariposa
         butterfly.style.left = Math.random() * 100 + '%';
