@@ -14,9 +14,11 @@
 
     .butterfly {
       position: absolute;
-      width: 100px; /* Ajusta el tamaño de la mariposa */
+      width: 80px; /* Tamaño de la mariposa */
       height: auto;
-      pointer-events: none;
+      background-image: url('https://www.example.com/mariposa.png'); /* Imagen de mariposa */
+      background-size: contain;
+      background-repeat: no-repeat;
       animation: flutter 5s infinite alternate, move 10s infinite linear;
     }
 
@@ -51,29 +53,18 @@
         top: 0%;
       }
     }
-
   </style>
 </head>
 <body>
   <script>
-    // Función para crear mariposas con iframe de Streamable
+    // Función para crear mariposas animadas
     function createButterflies() {
       const numButterflies = 10; // Número de mariposas
-      const butterflyVideoUrl = 'https://streamable.com/kpzxaf'; // URL del video en Streamable
-
       for (let i = 0; i < numButterflies; i++) {
-        const butterfly = document.createElement('iframe');
+        const butterfly = document.createElement('div');
         butterfly.classList.add('butterfly');
-        butterfly.src = `${butterflyVideoUrl}?autoplay=1`; // URL para reproducir automáticamente el video
-        butterfly.frameBorder = 0;
-        butterfly.allow = 'autoplay; fullscreen'; // Permitir autoplay y fullscreen
-        butterfly.allowFullscreen = true;
-
-        // Posición aleatoria inicial de la mariposa
         butterfly.style.left = Math.random() * 100 + '%';
         butterfly.style.top = Math.random() * 100 + '%';
-
-        // Añadir la mariposa al cuerpo del documento
         document.body.appendChild(butterfly);
       }
     }
