@@ -3,74 +3,87 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mariposas Volando</title>
+  <title>Fondo de Estrellas en Movimiento</title>
   <style>
-    body {
+    /* Estilos para el fondo y la animación de las estrellas */
+    body, html {
       margin: 0;
+      padding: 0;
+      height: 100%;
       overflow: hidden;
       background-color: #000; /* Fondo negro */
-      height: 100vh;
     }
 
-    .butterfly {
+    .star {
       position: absolute;
-      width: 80px; /* Tamaño de la mariposa */
-      height: auto;
-      background-image: url('https://www.example.com/mariposa.png'); /* Imagen de mariposa */
-      background-size: contain;
-      background-repeat: no-repeat;
-      animation: flutter 5s infinite alternate, move 10s infinite linear;
+      width: 2px;
+      height: 2px;
+      background-color: white;
+      border-radius: 50%;
+      opacity: 0.8;
+      animation: moveStars linear infinite;
     }
 
-    @keyframes flutter {
+    /* Generar estrellas aleatorias en diferentes posiciones */
+    @keyframes moveStars {
       0% {
-        transform: rotate(0deg);
+        transform: translateX(0) translateY(0);
       }
       100% {
-        transform: rotate(30deg);
+        transform: translateX(1000px) translateY(1000px);
       }
     }
 
-    @keyframes move {
-      0% {
-        left: 0%;
-        top: 0%;
-      }
-      25% {
-        left: 25%;
-        top: 50%;
-      }
-      50% {
-        left: 50%;
-        top: 20%;
-      }
-      75% {
-        left: 75%;
-        top: 60%;
-      }
-      100% {
-        left: 100%;
-        top: 0%;
-      }
+    /* Animación de estrellas con diferentes velocidades */
+    .star:nth-child(1) {
+      animation-duration: 10s;
+      left: 10%;
+      top: 30%;
+      animation-delay: 0s;
     }
+    .star:nth-child(2) {
+      animation-duration: 12s;
+      left: 20%;
+      top: 50%;
+      animation-delay: 1s;
+    }
+    .star:nth-child(3) {
+      animation-duration: 15s;
+      left: 30%;
+      top: 20%;
+      animation-delay: 2s;
+    }
+    .star:nth-child(4) {
+      animation-duration: 8s;
+      left: 40%;
+      top: 70%;
+      animation-delay: 3s;
+    }
+    /* Más estrellas pueden agregarse de la misma forma */
   </style>
 </head>
 <body>
-  <script>
-    // Función para crear mariposas animadas
-    function createButterflies() {
-      const numButterflies = 10; // Número de mariposas
-      for (let i = 0; i < numButterflies; i++) {
-        const butterfly = document.createElement('div');
-        butterfly.classList.add('butterfly');
-        butterfly.style.left = Math.random() * 100 + '%';
-        butterfly.style.top = Math.random() * 100 + '%';
-        document.body.appendChild(butterfly);
-      }
-    }
 
-    // Crear mariposas cuando la página cargue
-    window.onload = createButterflies;
+  <!-- Estrellas en movimiento -->
+  <div class="star"></div>
+  <div class="star"></div>
+  <div class="star"></div>
+  <div class="star"></div>
+  <!-- Puedes agregar más estrellas duplicando el div -->
+
+  <!-- JavaScript para añadir más estrellas automáticamente -->
+  <script>
+    // Función para crear estrellas dinámicamente
+    for (let i = 0; i < 50; i++) {
+      let star = document.createElement('div');
+      star.classList.add('star');
+      // Generar posición aleatoria para cada estrella
+      star.style.left = `${Math.random() * 100}%`;
+      star.style.top = `${Math.random() * 100}%`;
+      // Agregar las estrellas al body
+      document.body.appendChild(star);
+    }
   </script>
+
 </body>
 </html>
