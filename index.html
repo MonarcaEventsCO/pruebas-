@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Fondo de Estrellas en Movimiento</title>
+  <title>Fondo de Estrellas y Galaxias en Movimiento</title>
   <style>
-    /* Estilos para el fondo y la animación de las estrellas */
+    /* Estilos para el fondo y la animación de las estrellas y galaxias */
     body, html {
       margin: 0;
       padding: 0;
@@ -15,17 +15,30 @@
     }
 
     /* Estilo básico para las estrellas */
-    .star {
+    .star, .galaxy {
       position: absolute;
-      width: 2px;
-      height: 2px;
-      background-color: white;
       border-radius: 50%;
       opacity: 0.8;
     }
 
-    /* Animación de movimiento de las estrellas */
-    @keyframes moveStars {
+    /* Estilo de las estrellas */
+    .star {
+      width: 2px;
+      height: 2px;
+      background-color: white;
+    }
+
+    /* Estilo de las galaxias */
+    .galaxy {
+      width: 80px;
+      height: 80px;
+      background-image: url('https://upload.wikimedia.org/wikipedia/commons/5/52/Spiral_galaxy_M51.svg'); /* Imagen de galaxia */
+      background-size: cover;
+      opacity: 0.3;
+    }
+
+    /* Animación de movimiento de las estrellas y galaxias */
+    @keyframes moveStarsAndGalaxies {
       0% {
         transform: translateX(0) translateY(0);
       }
@@ -34,16 +47,16 @@
       }
     }
 
-    /* Agregar animación a las estrellas */
-    .star {
-      animation: moveStars linear infinite;
+    /* Aplicar animación a las estrellas y galaxias */
+    .star, .galaxy {
+      animation: moveStarsAndGalaxies linear infinite;
     }
 
   </style>
 </head>
 <body>
 
-  <!-- JavaScript para añadir más estrellas automáticamente -->
+  <!-- JavaScript para añadir más estrellas y galaxias dinámicamente -->
   <script>
     // Función para crear estrellas dinámicamente
     for (let i = 0; i < 100; i++) {  // Puedes cambiar el número de estrellas
@@ -52,13 +65,29 @@
       // Generar posición aleatoria para cada estrella
       star.style.left = `${Math.random() * 100}%`;
       star.style.top = `${Math.random() * 100}%`;
-      // Generar una animación aleatoria para cada estrella (diferente duración y retraso)
+      // Generar una animación aleatoria para cada estrella
       let animationDuration = Math.random() * 10 + 5; // Duración entre 5s y 15s
       let animationDelay = Math.random() * 5; // Retraso aleatorio entre 0s y 5s
       star.style.animationDuration = `${animationDuration}s`;
       star.style.animationDelay = `${animationDelay}s`;
       // Agregar las estrellas al body
       document.body.appendChild(star);
+    }
+
+    // Función para crear galaxias dinámicamente
+    for (let i = 0; i < 10; i++) {  // Puedes cambiar el número de galaxias
+      let galaxy = document.createElement('div');
+      galaxy.classList.add('galaxy');
+      // Generar posición aleatoria para cada galaxia
+      galaxy.style.left = `${Math.random() * 100}%`;
+      galaxy.style.top = `${Math.random() * 100}%`;
+      // Generar una animación aleatoria para cada galaxia
+      let animationDuration = Math.random() * 20 + 10; // Duración entre 10s y 30s
+      let animationDelay = Math.random() * 5; // Retraso aleatorio entre 0s y 5s
+      galaxy.style.animationDuration = `${animationDuration}s`;
+      galaxy.style.animationDelay = `${animationDelay}s`;
+      // Agregar las galaxias al body
+      document.body.appendChild(galaxy);
     }
   </script>
 
