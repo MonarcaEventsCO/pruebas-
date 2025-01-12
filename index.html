@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mariposas Volando</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      background: linear-gradient(to bottom, #87CEEB, #ffffff);
+      height: 100vh;
+    }
+
+    .butterfly {
+      position: absolute;
+      width: 50px;
+      height: 50px;
+      background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Morpho_menelaus_Male_Dos_MHNT.jpg/1200px-Morpho_menelaus_Male_Dos_MHNT.jpg');
+      background-size: cover;
+      background-position: center;
+      opacity: 0.8;
+      animation: flutter 1s infinite ease-in-out alternate;
+    }
+
+    @keyframes flutter {
+      0% {
+        transform: rotate(0deg) scale(1);
+      }
+      100% {
+        transform: rotate(20deg) scale(1.1);
+      }
+    }
+  </style>
+</head>
+<body>
+  <script>
+    // Función para generar mariposas aleatorias
+    function createButterfly() {
+      const butterfly = document.createElement('div');
+      butterfly.classList.add('butterfly');
+
+      // Posición inicial aleatoria
+      butterfly.style.left = Math.random() * window.innerWidth + 'px';
+      butterfly.style.top = Math.random() * window.innerHeight + 'px';
+
+      // Animación de movimiento aleatorio
+      const duration = Math.random() * 5 + 5; // Entre 5 y 10 segundos
+      butterfly.style.animationDuration = duration + 's';
+
+      // Añadimos al cuerpo
+      document.body.appendChild(butterfly);
+
+      // Movimiento suave
+      const fly = setInterval(() => {
+        butterfly.style.left = Math.random() * window.innerWidth + 'px';
+        butterfly.style.top = Math.random() * window.innerHeight + 'px';
+      }, duration * 1000);
+
+      // Eliminar después de un tiempo
+      setTimeout(() => {
+        clearInterval(fly);
+        butterfly.remove();
+      }, duration * 5000);
+    }
+
+    // Crear múltiples mariposas al inicio
+    for (let i = 0; i < 20; i++) {
+      setTimeout(createButterfly, i * 500);
+    }
+
+    // Seguir generando nuevas mariposas
+    setInterval(createButterfly, 3000);
+  </script>
+</body>
+</html>
