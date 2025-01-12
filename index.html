@@ -14,6 +14,7 @@
       background-color: #000; /* Fondo negro */
     }
 
+    /* Estilo básico para las estrellas */
     .star {
       position: absolute;
       width: 2px;
@@ -21,10 +22,9 @@
       background-color: white;
       border-radius: 50%;
       opacity: 0.8;
-      animation: moveStars linear infinite;
     }
 
-    /* Generar estrellas aleatorias en diferentes posiciones */
+    /* Animación de movimiento de las estrellas */
     @keyframes moveStars {
       0% {
         transform: translateX(0) translateY(0);
@@ -34,52 +34,29 @@
       }
     }
 
-    /* Animación de estrellas con diferentes velocidades */
-    .star:nth-child(1) {
-      animation-duration: 10s;
-      left: 10%;
-      top: 30%;
-      animation-delay: 0s;
+    /* Agregar animación a las estrellas */
+    .star {
+      animation: moveStars linear infinite;
     }
-    .star:nth-child(2) {
-      animation-duration: 12s;
-      left: 20%;
-      top: 50%;
-      animation-delay: 1s;
-    }
-    .star:nth-child(3) {
-      animation-duration: 15s;
-      left: 30%;
-      top: 20%;
-      animation-delay: 2s;
-    }
-    .star:nth-child(4) {
-      animation-duration: 8s;
-      left: 40%;
-      top: 70%;
-      animation-delay: 3s;
-    }
-    /* Más estrellas pueden agregarse de la misma forma */
+
   </style>
 </head>
 <body>
 
-  <!-- Estrellas en movimiento -->
-  <div class="star"></div>
-  <div class="star"></div>
-  <div class="star"></div>
-  <div class="star"></div>
-  <!-- Puedes agregar más estrellas duplicando el div -->
-
   <!-- JavaScript para añadir más estrellas automáticamente -->
   <script>
     // Función para crear estrellas dinámicamente
-    for (let i = 0; i < 50; i++) {
+    for (let i = 0; i < 100; i++) {  // Puedes cambiar el número de estrellas
       let star = document.createElement('div');
       star.classList.add('star');
       // Generar posición aleatoria para cada estrella
       star.style.left = `${Math.random() * 100}%`;
       star.style.top = `${Math.random() * 100}%`;
+      // Generar una animación aleatoria para cada estrella (diferente duración y retraso)
+      let animationDuration = Math.random() * 10 + 5; // Duración entre 5s y 15s
+      let animationDelay = Math.random() * 5; // Retraso aleatorio entre 0s y 5s
+      star.style.animationDuration = `${animationDuration}s`;
+      star.style.animationDelay = `${animationDelay}s`;
       // Agregar las estrellas al body
       document.body.appendChild(star);
     }
